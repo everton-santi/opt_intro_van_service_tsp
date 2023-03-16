@@ -1,7 +1,109 @@
 <!DOCTYPE html>
 <head>
     <title>VanService</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>VanService</h1>
+    <p>Insira até 12 endereços para calcular a rota com saída do aeroporto em São Gonçalo do Amarante, visitando os 12 endereços e retornando ao aeroporto com a menor quilometragem possível.</p>
+    <form onsubmit="return false;">
+        <p>
+            <label for="endereco1">
+                Passageiro 1:
+            </label>
+            <input id="endereco1" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco2">
+                Passageiro 2:
+            </label>
+            <input id="endereco2" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco3">
+                Passageiro 3:
+            </label>
+            <input id="endereco3" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco4">
+                Passageiro 4:
+            </label>
+            <input id="endereco4" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco5">
+                Passageiro 5:
+            </label>
+            <input id="endereco5" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco6">
+                Passageiro 6:
+            </label>
+            <input id="endereco6" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco7">
+                Passageiro 7:
+            </label>
+            <input id="endereco7" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco8">
+                Passageiro 8:
+            </label>
+            <input id="endereco8" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco9">
+                Passageiro 9:
+            </label>
+            <input id="endereco9" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco10">
+                Passageiro 10:
+            </label>
+            <input id="endereco10" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco11">
+                Passageiro 11:
+            </label>
+            <input id="endereco12" name="endereco" type="text" />
+        </p>
+        <p>
+            <label for="endereco12">
+                Passageiro 12:
+            </label>
+            <input id="endereco1" name="endereco" type="text" />
+        </p>
+        <p>
+            <input id="calcular" type="button" value="Calcular Rota" />
+        </p>
+    </form>
+    <script type="text/javascript">
+        
+        $( "#calcular" ).click(function() {
+            
+            const enderecos = [];
+            $( "input[name='endereco']" ).each(function( index, elem ) {
+                if ($(elem).val())
+                {
+                    enderecos.push("end="+$(elem).val());
+                }
+            });
+            
+            let url = "http://177.20.146.65:8889/tsp?"+enderecos.join("&");
+            
+            alert(url);
+
+            $.get( url, {"end":enderecos}).done(function( data ) {
+                console.log(  data );
+            });
+            
+            
+        });
+    </script>
 </body>
